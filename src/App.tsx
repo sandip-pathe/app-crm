@@ -81,213 +81,208 @@ const App: React.FC = () => {
       <BrowserRouter>
         <ConfigProvider theme={themeConfig}>
           <AntdApp>
-            <DevtoolsProvider>
-              <Refine
-                authProvider={authProvider}
-                dataProvider={dataProvider}
-                liveProvider={liveProvider}
-                routerProvider={routerProvider}
-                resources={resources}
-                notificationProvider={useNotificationProvider}
-                options={{
-                  liveMode: "auto",
-                  syncWithLocation: true,
-                  warnWhenUnsavedChanges: true,
-                }}
-              >
-                <Routes>
+            <Refine
+              authProvider={authProvider}
+              dataProvider={dataProvider}
+              liveProvider={liveProvider}
+              routerProvider={routerProvider}
+              resources={resources}
+              notificationProvider={useNotificationProvider}
+              options={{
+                liveMode: "auto",
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}
+            >
+              <Routes>
+                <Route
+                  element={
+                    <Authenticated
+                      key="authenticated-layout"
+                      fallback={<CatchAllNavigate to="/login" />}
+                    >
+                      <Layout>
+                        <Outlet />
+                      </Layout>
+                    </Authenticated>
+                  }
+                >
+                  <Route index element={<DashboardPage />} />
                   <Route
+                    path="/calendar"
                     element={
-                      <Authenticated
-                        key="authenticated-layout"
-                        fallback={<CatchAllNavigate to="/login" />}
-                      >
-                        <Layout>
-                          <Outlet />
-                        </Layout>
-                      </Authenticated>
+                      <CalendarPageWrapper>
+                        <Outlet />
+                      </CalendarPageWrapper>
                     }
                   >
-                    <Route index element={<DashboardPage />} />
+                    <Route index element={null} />
+                    <Route path="show/:id" element={<CalendarShowPage />} />
+                    <Route path="edit/:id" element={<CalendarEditPage />} />
+                    <Route path="create" element={<CalendarCreatePage />} />
+                  </Route>
+                  <Route path="/scrumboard" element={<Outlet />}>
                     <Route
-                      path="/calendar"
+                      path="kanban"
                       element={
-                        <CalendarPageWrapper>
+                        <KanbanPage>
                           <Outlet />
-                        </CalendarPageWrapper>
+                        </KanbanPage>
                       }
                     >
-                      <Route index element={null} />
-                      <Route path="show/:id" element={<CalendarShowPage />} />
-                      <Route path="edit/:id" element={<CalendarEditPage />} />
-                      <Route path="create" element={<CalendarCreatePage />} />
-                    </Route>
-                    <Route path="/scrumboard" element={<Outlet />}>
+                      <Route path="create" element={<KanbanCreatePage />} />
+                      <Route path="edit/:id" element={<KanbanEditPage />} />
                       <Route
-                        path="kanban"
-                        element={
-                          <KanbanPage>
-                            <Outlet />
-                          </KanbanPage>
-                        }
-                      >
-                        <Route path="create" element={<KanbanCreatePage />} />
-                        <Route path="edit/:id" element={<KanbanEditPage />} />
-                        <Route
-                          path="stages/create"
-                          element={<KanbanCreateStage />}
-                        />
-                        <Route
-                          path="stages/edit/:id"
-                          element={<KanbanEditStage />}
-                        />
-                      </Route>
+                        path="stages/create"
+                        element={<KanbanCreateStage />}
+                      />
                       <Route
-                        path="sales"
-                        element={
-                          <SalesPage>
-                            <Outlet />
-                          </SalesPage>
-                        }
-                      >
-                        <Route
-                          path="create"
-                          element={
-                            <SalesCreatePage>
-                              <Outlet />
-                            </SalesCreatePage>
-                          }
-                        >
-                          <Route
-                            path="company/create"
-                            element={<CompanyCreatePage isOverModal />}
-                          />
-                        </Route>
-                        <Route path="edit/:id" element={<SalesEditPage />} />
-                        <Route
-                          path="stages/create"
-                          element={<SalesCreateStage />}
-                        />
-                        <Route
-                          path="stages/edit/:id"
-                          element={<SalesEditStage />}
-                        />
-                        <Route
-                          path=":id/finalize"
-                          element={<SalesFinalizeDeal />}
-                        />
-                      </Route>
+                        path="stages/edit/:id"
+                        element={<KanbanEditStage />}
+                      />
                     </Route>
                     <Route
-                      path="/companies"
+                      path="sales"
                       element={
-                        <CompanyListPage>
+                        <SalesPage>
                           <Outlet />
-                        </CompanyListPage>
-                      }
-                    >
-                      <Route path="create" element={<CompanyCreatePage />} />
-                    </Route>
-                    <Route
-                      path="/companies/edit/:id"
-                      element={<CompanyEditPage />}
-                    />
-                    <Route
-                      path="/contacts"
-                      element={
-                        <ContactsListPage>
-                          <Outlet />
-                        </ContactsListPage>
-                      }
-                    >
-                      <Route index element={null} />
-                      <Route path="show/:id" element={<ContactShowPage />} />
-                      <Route
-                        path="create"
-                        element={
-                          <ContactCreatePage>
-                            <Outlet />
-                          </ContactCreatePage>
-                        }
-                      >
-                        <Route
-                          path="company-create"
-                          element={<CompanyCreatePage isOverModal />}
-                        />
-                      </Route>
-                    </Route>
-                    <Route
-                      path="/quotes"
-                      element={
-                        <QuotesListPage>
-                          <Outlet />
-                        </QuotesListPage>
+                        </SalesPage>
                       }
                     >
                       <Route
                         path="create"
                         element={
-                          <QuotesCreatePage>
+                          <SalesCreatePage>
                             <Outlet />
-                          </QuotesCreatePage>
+                          </SalesCreatePage>
                         }
                       >
                         <Route
-                          path="company-create"
+                          path="company/create"
                           element={<CompanyCreatePage isOverModal />}
                         />
                       </Route>
+                      <Route path="edit/:id" element={<SalesEditPage />} />
                       <Route
-                        path="edit/:id"
-                        element={
-                          <QuotesEditPage>
-                            <Outlet />
-                          </QuotesEditPage>
-                        }
-                      >
-                        <Route
-                          path="company-create"
-                          element={<CompanyCreatePage isOverModal />}
-                        />
-                      </Route>
+                        path="stages/create"
+                        element={<SalesCreateStage />}
+                      />
+                      <Route
+                        path="stages/edit/:id"
+                        element={<SalesEditStage />}
+                      />
+                      <Route
+                        path=":id/finalize"
+                        element={<SalesFinalizeDeal />}
+                      />
                     </Route>
-                    <Route
-                      path="/quotes/show/:id"
-                      element={<QuotesShowPage />}
-                    />
-                    <Route path="/administration" element={<Outlet />}>
-                      <Route path="settings" element={<SettingsPage />} />
-                      <Route path="audit-log" element={<AuditLogPage />} />
-                    </Route>
-                    <Route path="*" element={<ErrorComponent />} />
                   </Route>
                   <Route
+                    path="/companies"
                     element={
-                      <Authenticated
-                        key="authenticated-auth"
-                        fallback={<Outlet />}
-                      >
-                        <NavigateToResource resource="dashboard" />
-                      </Authenticated>
+                      <CompanyListPage>
+                        <Outlet />
+                      </CompanyListPage>
                     }
                   >
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route
-                      path="/forgot-password"
-                      element={<ForgotPasswordPage />}
-                    />
-                    <Route
-                      path="/update-password"
-                      element={<UpdatePasswordPage />}
-                    />
+                    <Route path="create" element={<CompanyCreatePage />} />
                   </Route>
-                </Routes>
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-              </Refine>
-              <DevtoolsPanel />
-            </DevtoolsProvider>
+                  <Route
+                    path="/companies/edit/:id"
+                    element={<CompanyEditPage />}
+                  />
+                  <Route
+                    path="/contacts"
+                    element={
+                      <ContactsListPage>
+                        <Outlet />
+                      </ContactsListPage>
+                    }
+                  >
+                    <Route index element={null} />
+                    <Route path="show/:id" element={<ContactShowPage />} />
+                    <Route
+                      path="create"
+                      element={
+                        <ContactCreatePage>
+                          <Outlet />
+                        </ContactCreatePage>
+                      }
+                    >
+                      <Route
+                        path="company-create"
+                        element={<CompanyCreatePage isOverModal />}
+                      />
+                    </Route>
+                  </Route>
+                  <Route
+                    path="/quotes"
+                    element={
+                      <QuotesListPage>
+                        <Outlet />
+                      </QuotesListPage>
+                    }
+                  >
+                    <Route
+                      path="create"
+                      element={
+                        <QuotesCreatePage>
+                          <Outlet />
+                        </QuotesCreatePage>
+                      }
+                    >
+                      <Route
+                        path="company-create"
+                        element={<CompanyCreatePage isOverModal />}
+                      />
+                    </Route>
+                    <Route
+                      path="edit/:id"
+                      element={
+                        <QuotesEditPage>
+                          <Outlet />
+                        </QuotesEditPage>
+                      }
+                    >
+                      <Route
+                        path="company-create"
+                        element={<CompanyCreatePage isOverModal />}
+                      />
+                    </Route>
+                  </Route>
+                  <Route path="/quotes/show/:id" element={<QuotesShowPage />} />
+                  <Route path="/administration" element={<Outlet />}>
+                    <Route path="settings" element={<SettingsPage />} />
+                    <Route path="audit-log" element={<AuditLogPage />} />
+                  </Route>
+                  <Route path="*" element={<ErrorComponent />} />
+                </Route>
+                <Route
+                  element={
+                    <Authenticated
+                      key="authenticated-auth"
+                      fallback={<Outlet />}
+                    >
+                      <NavigateToResource resource="dashboard" />
+                    </Authenticated>
+                  }
+                >
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route
+                    path="/forgot-password"
+                    element={<ForgotPasswordPage />}
+                  />
+                  <Route
+                    path="/update-password"
+                    element={<UpdatePasswordPage />}
+                  />
+                </Route>
+              </Routes>
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
+            {/* <DevtoolsPanel /> */}
           </AntdApp>
         </ConfigProvider>
       </BrowserRouter>

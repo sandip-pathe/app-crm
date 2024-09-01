@@ -44,7 +44,7 @@ export const DashboardTasksChart: React.FC = () => {
       }))
       .filter(
         (stage) =>
-          stage.value !== null && stage.value !== undefined && stage.value > 0,
+          stage.value !== null && stage.value !== undefined && stage.value > 0
       )
       .sort((a, b) => (b.value ?? 0) - (a.value ?? 0));
   }, [data?.data]);

@@ -7,6 +7,7 @@ import { createClient } from "graphql-ws";
 
 import { axiosInstance } from "./axios";
 
+// Update these to your local API URLs
 export const API_BASE_URL = "https://api.crm.refine.dev";
 export const API_URL = `${API_BASE_URL}/graphql`;
 export const WS_URL = "wss://api.crm.refine.dev/graphql";
@@ -37,11 +38,10 @@ export const wsClient = createClient({
   url: WS_URL,
   connectionParams: () => ({
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`, // Replace with your local auth mechanism if necessary
     },
   }),
 });
 
 export const dataProvider = graphqlDataProvider(client);
-
 export const liveProvider = graphqlLiveProvider(wsClient);

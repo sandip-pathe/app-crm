@@ -25,7 +25,7 @@ export const DashboardPage: React.FC = () => {
   });
 
   return (
-    <div className="page-container">
+    <div className="page-container bg-danger">
       <Row gutter={[32, 32]}>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
