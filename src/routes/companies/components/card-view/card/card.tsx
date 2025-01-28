@@ -53,7 +53,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
               gap: "6px",
             }}
           >
-            <Text size="xs">Related contacts</Text>
+            <Text size="xs">Team</Text>
             <AvatarGroup
               size={"small"}
               overlap
@@ -69,7 +69,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
               gap: "6px",
             }}
           >
-            <Text size="xs">Sales owner</Text>
+            <Text size="xs">Manager</Text>
             <Tooltip
               title={company.salesOwner?.name}
               key={company.salesOwner?.id}
@@ -95,7 +95,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
           menu={{
             items: [
               {
-                label: "View company",
+                label: "View project",
                 key: "1",
                 // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <EyeOutlined />,
@@ -105,7 +105,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
               },
               {
                 danger: true,
-                label: "Delete company",
+                label: "Delete project",
                 key: "2",
                 // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <DeleteOutlined />,
@@ -168,7 +168,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
             alignItems: "center",
           }}
         >
-          <Text type="secondary">Open deals amount</Text>
+          {/* <Text type="secondary">Budget</Text>
           <Text
             strong
             size="md"
@@ -177,7 +177,7 @@ export const CompanyCard: FC<Props> = ({ company }) => {
             }}
           >
             {currencyNumber(company?.dealsAggregate?.[0].sum?.value || 0)}
-          </Text>
+          </Text> */}
         </Space>
       </div>
     </Card>

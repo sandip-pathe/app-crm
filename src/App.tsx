@@ -16,7 +16,6 @@ import { resources, themeConfig } from "@/config";
 import { authProvider, dataProvider, liveProvider } from "@/providers";
 
 import { AlgoliaSearchWrapper, FullScreenLoading, Layout } from "./components";
-import { useAutoLoginForDemo } from "./hooks";
 import { AuditLogPage, SettingsPage } from "./routes/administration";
 import {
   CalendarCreatePage,
@@ -68,14 +67,6 @@ import "./styles/fc.css";
 import "./styles/index.css";
 
 const App: React.FC = () => {
-  // This hook is used to automatically login the user.
-  // We use this hook to skip the login page and demonstrate the application more quickly.
-  const { loading } = useAutoLoginForDemo();
-
-  if (loading) {
-    return <FullScreenLoading />;
-  }
-
   return (
     <AlgoliaSearchWrapper>
       <BrowserRouter>
@@ -257,6 +248,7 @@ const App: React.FC = () => {
                   </Route>
                   <Route path="*" element={<ErrorComponent />} />
                 </Route>
+
                 <Route
                   element={
                     <Authenticated
@@ -282,7 +274,6 @@ const App: React.FC = () => {
               <UnsavedChangesNotifier />
               <DocumentTitleHandler />
             </Refine>
-            {/* <DevtoolsPanel /> */}
           </AntdApp>
         </ConfigProvider>
       </BrowserRouter>

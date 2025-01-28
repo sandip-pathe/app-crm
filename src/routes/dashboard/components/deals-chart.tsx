@@ -3,7 +3,11 @@ import React, { lazy, Suspense, useMemo } from "react";
 import { useList, useNavigation } from "@refinedev/core";
 import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
-import { DollarOutlined, RightCircleOutlined } from "@ant-design/icons";
+import {
+  DollarOutlined,
+  RightCircleOutlined,
+  RiseOutlined,
+} from "@ant-design/icons";
 import type { AreaConfig } from "@ant-design/plots";
 import { Button, Card } from "antd";
 import dayjs from "dayjs";
@@ -60,7 +64,7 @@ export const DashboardDealsChart: React.FC = () => {
       });
 
     return [...(won || []), ...(lost || [])].sort(
-      (a, b) => a.timeUnix - b.timeUnix,
+      (a, b) => a.timeUnix - b.timeUnix
     );
   }, [data]);
 
@@ -116,16 +120,16 @@ export const DashboardDealsChart: React.FC = () => {
           }}
         >
           {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
-          <DollarOutlined />
+          <RiseOutlined />
           <Text size="sm" style={{ marginLeft: ".5rem" }}>
-            Deals
+            Project Progress
           </Text>
         </div>
       }
       extra={
         // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         <Button onClick={() => list("deals")} icon={<RightCircleOutlined />}>
-          See sales pipeline
+          See Project Outline
         </Button>
       }
     >

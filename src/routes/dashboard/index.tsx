@@ -36,9 +36,9 @@ export const DashboardPage: React.FC = () => {
         </Col>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
-            resource="contacts"
+            resource="deals"
             isLoading={isLoading}
-            totalCount={data?.data["contacts"].totalCount}
+            totalCount={data?.data["deals"].totalCount}
           />
         </Col>
         <Col xs={24} sm={24} xl={8}>
@@ -69,12 +69,22 @@ export const DashboardPage: React.FC = () => {
         <Col
           xs={24}
           sm={24}
-          xl={16}
+          xl={8}
           style={{
             height: "432px",
           }}
         >
-          <DashboardDealsChart />
+          <DashboardTasksChart />
+        </Col>
+        <Col
+          xs={24}
+          sm={24}
+          xl={8}
+          style={{
+            height: "432px",
+          }}
+        >
+          <DashboardTasksChart />
         </Col>
       </Row>
 
@@ -101,22 +111,22 @@ export const DashboardPage: React.FC = () => {
         <Col
           xs={24}
           sm={24}
-          xl={8}
+          xl={16}
           style={{
-            height: "448px",
+            height: "432px",
           }}
         >
-          <DashboardTasksChart />
+          <DashboardDealsChart />
         </Col>
         <Col
           xs={24}
           sm={24}
-          xl={16}
+          xl={8}
           style={{
-            height: "448px",
+            height: "432px",
           }}
         >
-          <CompaniesMap />
+          <DashboardTasksChart />
         </Col>
       </Row>
     </div>

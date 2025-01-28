@@ -145,7 +145,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
           },
         }}
         title={
-          <ListTitleButton toPath="companies" buttonText="Add new company" />
+          <ListTitleButton toPath="companies" buttonText="Add new Project" />
         }
       >
         {view === "table" ? (

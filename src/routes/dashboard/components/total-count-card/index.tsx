@@ -58,13 +58,7 @@ export const DashboardTotalCountCard: React.FC<{
   };
 
   return (
-    <Card
-      style={{ height: "96px", padding: 0 }}
-      bodyStyle={{
-        padding: "8px 8px 8px 12px",
-      }}
-      size="small"
-    >
+    <Card style={{ height: "96px", padding: 0 }} size="small">
       <div
         style={{
           display: "flex",
@@ -156,7 +150,7 @@ const variants: {
         />
       </IconWrapper>
     ),
-    title: "Number of companies",
+    title: "Live Projects",
     data: [
       {
         index: "1",
@@ -194,7 +188,7 @@ const variants: {
         />
       </IconWrapper>
     ),
-    title: "Number of contacts",
+    title: "Live Projects",
     data: [
       {
         index: "1",
@@ -236,7 +230,7 @@ const variants: {
         />
       </IconWrapper>
     ),
-    title: "Total deals in pipeline",
+    title: "No of Tasks",
     data: [
       {
         index: "1",

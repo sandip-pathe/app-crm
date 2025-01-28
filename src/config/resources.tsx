@@ -35,7 +35,7 @@ export const resources: IResourceItem[] = [
   {
     name: "scrumboard",
     meta: {
-      label: "Scrumboard",
+      label: "WorkSpace",
       // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <ProjectOutlined />,
     },
@@ -66,7 +66,7 @@ export const resources: IResourceItem[] = [
     create: "/scrumboard/sales/create",
     edit: "/scrumboard/sales/edit/:id",
     meta: {
-      label: "Sales Pipeline",
+      label: "Project Pipeline",
       parent: "scrumboard",
     },
   },
@@ -94,7 +94,7 @@ export const resources: IResourceItem[] = [
     create: "/companies/create",
     edit: "/companies/edit/:id",
     meta: {
-      label: "Companies",
+      label: "Projects",
       // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <ShopOutlined />,
     },

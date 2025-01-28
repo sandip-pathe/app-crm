@@ -7,7 +7,6 @@ import { useLogin } from "@refinedev/core";
 import { GithubOutlined, GoogleOutlined } from "@ant-design/icons";
 
 import { Title } from "@/components";
-import { demoCredentials } from "@/providers";
 
 export const LoginPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -16,10 +15,6 @@ export const LoginPage: React.FC = () => {
   const emailFromSearchParams = searchParams.get("email");
   const accessToken = searchParams.get("accessToken");
   const refreshToken = searchParams.get("refreshToken");
-
-  const initialValues = emailFromSearchParams
-    ? { email: emailFromSearchParams }
-    : demoCredentials;
 
   useEffect(() => {
     if (accessToken && refreshToken) {
@@ -33,9 +28,7 @@ export const LoginPage: React.FC = () => {
   return (
     <AuthPage
       type="login"
-      formProps={{
-        initialValues,
-      }}
+      formProps={{}}
       contentProps={{
         className: "auth-page",
       }}

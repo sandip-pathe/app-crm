@@ -112,7 +112,7 @@ export const CalendarUpcomingEvents: React.FC<CalendarUpcomingEventsProps> = ({
           {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <CalendarOutlined />
           <Text size="sm" style={{ marginLeft: ".7rem" }}>
-            Upcoming events
+            Deadlines
           </Text>
         </div>
       }

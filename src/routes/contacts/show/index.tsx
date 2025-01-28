@@ -173,8 +173,8 @@ export const ContactShowPage: React.FC = () => {
               activeForm && activeForm === "email"
                 ? "form"
                 : email
-                  ? "view"
-                  : "empty"
+                ? "view"
+                : "empty"
             }
             itemProps={{
               name: "email",
@@ -195,8 +195,8 @@ export const ContactShowPage: React.FC = () => {
               activeForm && activeForm === "companyId"
                 ? "form"
                 : company.id
-                  ? "view"
-                  : "empty"
+                ? "view"
+                : "empty"
             }
             itemProps={{
               name: "companyId",
@@ -216,7 +216,7 @@ export const ContactShowPage: React.FC = () => {
             extra={
               <Form.Item
                 name="salesOwnerId"
-                label="Sales Owner"
+                label="Project Manager"
                 labelCol={{
                   style: {
                     marginTop: "0.8rem",
@@ -242,7 +242,7 @@ export const ContactShowPage: React.FC = () => {
                             avatarUrl={avatarUrl ?? undefined}
                           />
                         ),
-                      }),
+                      })
                     ) ?? []
                   }
                 />
@@ -266,7 +266,7 @@ export const ContactShowPage: React.FC = () => {
                         avatarUrl={avatarUrl ?? undefined}
                       />
                     ),
-                  }),
+                  })
                 ) ?? []
               }
             />
@@ -278,8 +278,8 @@ export const ContactShowPage: React.FC = () => {
               activeForm && activeForm === "jobTitle"
                 ? "form"
                 : jobTitle
-                  ? "view"
-                  : "empty"
+                ? "view"
+                : "empty"
             }
             itemProps={{
               name: "jobTitle",
@@ -299,8 +299,8 @@ export const ContactShowPage: React.FC = () => {
               activeForm && activeForm === "phone"
                 ? "form"
                 : phone
-                  ? "view"
-                  : "empty"
+                ? "view"
+                : "empty"
             }
             itemProps={{
               name: "phone",
@@ -321,8 +321,8 @@ export const ContactShowPage: React.FC = () => {
               activeForm && activeForm === "timezone"
                 ? "form"
                 : timezone
-                  ? "view"
-                  : "empty"
+                ? "view"
+                : "empty"
             }
             itemProps={{
               name: "timezone",
@@ -375,7 +375,7 @@ export const ContactShowPage: React.FC = () => {
                 },
                 {
                   onSuccess: () => closeModal(),
-                },
+                }
               );
             }}
             okText="Yes"

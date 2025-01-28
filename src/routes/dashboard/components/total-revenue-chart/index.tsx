@@ -9,7 +9,6 @@ import { Card, Skeleton, Space } from "antd";
 
 import { Text } from "@/components";
 import type { DashboardTotalRevenueQuery } from "@/graphql/types";
-import { currencyNumber } from "@/utilities";
 
 import { DASHBOARD_TOTAL_REVENUE_QUERY } from "./queries";
 
@@ -60,18 +59,18 @@ export const DashboardTotalRevenueChart: React.FC = () => {
     console.error(
       "Error fetching dashboard data",
       expectedRevenueError,
-      realizedRevenueError,
+      realizedRevenueError
     );
     return null;
   }
 
   const totalRealizationRevenue = (realizedRevenueData?.data || []).map(
-    (item) => item.dealsAggregate?.[0]?.sum?.value,
+    (item) => item.dealsAggregate?.[0]?.sum?.value
   )[0];
 
   const totalExpectedRevenue = (expectedRevenueData?.data || []).reduce(
     (prev, curr) => prev + (curr?.dealsAggregate?.[0]?.sum?.value ?? 0),
-    0,
+    0
   );
 
   const realizationPercentageOfExpected =
@@ -153,7 +152,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
         >
           {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <DollarOutlined />
-          <Text size="sm">Total revenue (yearly)</Text>
+          <Text size="sm">Total Grant</Text>
         </div>
       }
     >
@@ -169,7 +168,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
       >
         <Space direction="vertical" size={0}>
           <Text size="xs" className="secondary">
-            Expected
+            Total
           </Text>
           {!expectedRevenueIsLoading || !realizedRevenueIsLoading ? (
             <Text
@@ -179,7 +178,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
                 minWidth: "100px",
               }}
             >
-              {currencyNumber(totalExpectedRevenue || 0)}
+              ₹96,597.00
             </Text>
           ) : (
             <Skeleton.Button
@@ -194,7 +193,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
         </Space>
         <Space direction="vertical" size={0}>
           <Text size="xs" className="secondary">
-            Realized
+            Spent
           </Text>
           {!expectedRevenueIsLoading || !realizedRevenueIsLoading ? (
             <Text
@@ -204,7 +203,7 @@ export const DashboardTotalRevenueChart: React.FC = () => {
                 minWidth: "100px",
               }}
             >
-              {currencyNumber(totalRealizationRevenue || 0)}
+              ₹23,887.00
             </Text>
           ) : (
             <Skeleton.Button

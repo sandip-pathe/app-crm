@@ -102,7 +102,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
           type: "replace",
         });
       }}
-      title="Add new company"
+      title="Add New Project"
       width={512}
       // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       closeIcon={<LeftOutlined />}
@@ -147,19 +147,19 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
         }}
       >
         <Form.Item
-          label="Company name"
+          label="Project name"
           name="name"
           rules={[{ required: true }]}
         >
-          <Input placeholder="Please enter company name" />
+          <Input placeholder="Please enter project name" />
         </Form.Item>
         <Form.Item
-          label="Sales owner"
+          label="Project Manager"
           name="salesOwnerId"
           rules={[{ required: true }]}
         >
           <Select
-            placeholder="Please sales owner user"
+            placeholder="Please select Manager"
             {...selectProps}
             options={
               queryResult.data?.data?.map((user) => ({
@@ -208,7 +208,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
               ))}
               <Typography.Link onClick={() => add()}>
                 {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
-                <PlusCircleOutlined /> Add new contacts
+                <PlusCircleOutlined /> Add New Members
               </Typography.Link>
             </Space>
           )}
